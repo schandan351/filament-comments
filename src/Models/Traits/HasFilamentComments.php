@@ -10,7 +10,7 @@ trait HasFilamentComments
     public function filamentComments(): HasMany
     {
         return $this
-            ->hasMany(FilamentComment::class, 'subject_id')
+            ->hasMany(config('filament-comments.model', FilamentComment::class), 'subject_id')
             ->where('subject_type', $this->getMorphClass())
             ->latest();
     }

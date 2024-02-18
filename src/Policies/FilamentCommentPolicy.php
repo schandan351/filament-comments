@@ -3,7 +3,6 @@
 namespace Parallax\FilamentComments\Policies;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Parallax\FilamentComments\Models\FilamentComment;
 
 class FilamentCommentPolicy
 {
@@ -12,7 +11,7 @@ class FilamentCommentPolicy
         return true;
     }
 
-    public function view(Authenticatable $user, FilamentComment $filamentComment): bool
+    public function view(Authenticatable $user, $filamentComment): bool
     {
         return true;
     }
@@ -22,12 +21,12 @@ class FilamentCommentPolicy
         return true;
     }
 
-    public function update(Authenticatable $user, FilamentComment $filamentComment): bool
+    public function update(Authenticatable $user, $filamentComment): bool
     {
         return false;
     }
 
-    public function delete(Authenticatable $user, FilamentComment $filamentComment): bool
+    public function delete(Authenticatable $user, $filamentComment): bool
     {
         return $user->id === $filamentComment->user_id;
     }
@@ -37,7 +36,7 @@ class FilamentCommentPolicy
         return false;
     }
 
-    public function restore(Authenticatable $user, FilamentComment $filamentComment): bool
+    public function restore(Authenticatable $user, $filamentComment): bool
     {
         return false;
     }
@@ -47,7 +46,7 @@ class FilamentCommentPolicy
         return false;
     }
 
-    public function forceDelete(Authenticatable $user, FilamentComment $filamentComment): bool
+    public function forceDelete(Authenticatable $user, $filamentComment): bool
     {
         return false;
     }

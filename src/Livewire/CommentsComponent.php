@@ -20,14 +20,17 @@ class CommentsComponent extends Component implements HasForms
 
     public Model $record;
 
+    public Model $filamentCommentModel;
+
     public function mount(): void
     {
+        $this->filamentCommentModel = config('filament-comments.model', FilamentComment::class);
         $this->form->fill();
     }
 
     public function form(Form $form): Form
     {
-        if (!auth()->user()->can('create', FilamentComment::class)) {
+        if (!auth()->user()->can('create', $this->filamentCommentModel)) {
             return $form;
         }
 
@@ -45,7 +48,7 @@ class CommentsComponent extends Component implements HasForms
 
     public function create(): void
     {
-        if (!auth()->user()->can('create', FilamentComment::class)) {
+        if (!auth()->user()->can('create', $this->filamentCommentModel)) {
             return;
         }
 
@@ -69,7 +72,7 @@ class CommentsComponent extends Component implements HasForms
 
     public function delete(int $id): void
     {
-        $comment = FilamentComment::find($id);
+        $comment = $this->filamentCommentModel->find($id);
 
         if (!$comment) {
             return;

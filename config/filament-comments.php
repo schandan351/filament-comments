@@ -53,4 +53,9 @@ return [
      * Authenticatable model class
      */
     'authenticatable' => \App\Models\User::class,
+
+    /*
+     * Comment model class
+     */
+    'model' => \Parallax\FilamentComments\Models\FilamentComment::class
 ];
